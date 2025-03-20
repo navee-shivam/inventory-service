@@ -11,13 +11,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Added the builder annotation, if we add only builder annotation it results in exception of 
+ * org.hibernate.InstantiationException: No default constructor for entity
+ * 
+ * To fix that we are annotated with @noArgs and @AllArgs
+ */
 @Entity
 @Table(name = "items")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class Items extends BaseEntity {
 
 	@Id
